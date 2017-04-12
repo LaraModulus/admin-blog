@@ -1,0 +1,14 @@
+{
+    "name": "LaraMod/admin-blog",
+    "description": "LaraMod Blog Module",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nikola Katsarov",
+            "email": "katsarov@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
