@@ -1,7 +1,7 @@
 <?php
-namespace Escapeboy\AdminBlog\Models\Blog;
-use Escapeboy\AdminCore\Scopes\AdminCoreOrderByCreatedAtScope;
-use Escapeboy\AdminFiles\Models\Files;
+namespace LaraMod\AdminBlog\Models\Blog;
+use LaraMod\AdminCore\Scopes\AdminCoreOrderByCreatedAtScope;
+use LaraMod\AdminFiles\Models\Files;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;

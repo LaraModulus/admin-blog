@@ -94,12 +94,12 @@
                             	</label>
                             </div>
                         </div>
-                        @if(\Escapeboy\AdminBlog\Models\Blog\Categories::where('id', '!=', $category->id)->count())
+                        @if(\LaraMod\AdminBlog\Models\Blog\Categories::where('id', '!=', $category->id)->count())
                         <div class="form-group">
                             <label for="categories_id">Categories</label>
                             <select class="form-control selector" name="categories_id" id="categories_id">
                                 <option value="0">This is parent category</option>
-                                @foreach(\Escapeboy\AdminBlog\Models\Blog\Categories::where('id', '!=', $category->id)->get() as $c)
+                                @foreach(\LaraMod\AdminBlog\Models\Blog\Categories::where('id', '!=', $category->id)->get() as $c)
                                     <option value="{{$c->id}}" @if($c->id==$category->categories_id) selected @endif>{{$c->title}}</option>
                                 @endforeach
                             </select>

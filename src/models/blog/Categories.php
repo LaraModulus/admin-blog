@@ -1,6 +1,6 @@
 <?php
-namespace Escapeboy\AdminBlog\Models\Blog;
-use Escapeboy\AdminCore\Scopes\AdminCoreOrderByCreatedAtScope;
+namespace LaraMod\AdminBlog\Models\Blog;
+use LaraMod\AdminCore\Scopes\AdminCoreOrderByCreatedAtScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

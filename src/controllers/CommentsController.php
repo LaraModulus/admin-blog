@@ -1,12 +1,12 @@
 <?php
-namespace Escapeboy\AdminBlog\Controllers;
+namespace LaraMod\AdminBlog\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
-use Escapeboy\AdminBlog\Models\Blog\Categories;
-use Escapeboy\AdminBlog\Models\Blog\Comments;
-use Escapeboy\AdminBlog\Models\Blog\Posts;
+use LaraMod\AdminBlog\Models\Blog\Categories;
+use LaraMod\AdminBlog\Models\Blog\Comments;
+use LaraMod\AdminBlog\Models\Blog\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
