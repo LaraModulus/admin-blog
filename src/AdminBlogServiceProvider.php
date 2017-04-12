@@ -1,6 +1,6 @@
 <?php
 
-namespace Escapeboy\AdminBlog;
+namespace LaraMod\AdminBlog;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -15,14 +15,8 @@ class AdminBlogServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/views', 'adminblog');
         $this->publishes([
-            __DIR__.'/views' => base_path('resources/views/escapeboy/admin-blog'),
+            __DIR__.'/views' => base_path('resources/views/laramod/admin-blog'),
         ]);
-//        $this->publishes([
-//            __DIR__.'/assets' => public_path('assets/escapeboy/dashboard'),
-//        ], 'public');
-//        $this->publishes([
-//            __DIR__.'/../config/adminusers.php' => config_path('adminusers.php')
-//        ], 'config');
         $this->publishes([
             __DIR__.'/../database/migrations/' => database_path('migrations')
         ], 'migrations');
@@ -37,9 +31,5 @@ class AdminBlogServiceProvider extends ServiceProvider
     public function register()
     {
         include __DIR__.'/routes.php';
-//        $this->mergeConfigFrom(
-//            __DIR__.'/../config/admincore.php', 'admincore'
-//        );
-//        $this->app->make('Escapeboy\AdminBlog\Controllers\PostsController');
     }
 }
