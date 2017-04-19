@@ -43,7 +43,7 @@ class CategoriesController extends Controller
                 $category->{'meta_description_'.$locale} = $request->get('meta_description_'.$locale);
                 $category->{'meta_keywords_'.$locale} = $request->get('meta_keywords_'.$locale);
             }
-            $category->viewable = $request->get('visible', 0);
+            $category->viewable = $request->has('visible');
             $category->save();
         }catch (\Exception $e){
             return redirect()->back()->withInput()->withErrors(['errors' => $e->getMessage()]);

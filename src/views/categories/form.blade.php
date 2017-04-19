@@ -89,7 +89,7 @@
                             <label for="visible">Visible?</label>
                             <div class="checkbox">
                             	<label>
-                            		<input type="checkbox" value="1" id="visible" name="visible" @if($category->visible || !$category->id) checked @endif>
+                            		<input type="checkbox" value="1" id="visible" name="visible" @if($category->viewable || !$category->id) checked @endif>
                             		Yes
                             	</label>
                             </div>
