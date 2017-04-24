@@ -1,11 +1,11 @@
 <?php
-namespace LaraMod\AdminBlog\Controllers;
+namespace LaraModulus\AdminBlog\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
-use LaraMod\AdminBlog\Models\Blog\Categories;
-use LaraMod\AdminBlog\Models\Blog\Posts;
+use LaraModulus\AdminBlog\Models\Blog\Categories;
+use LaraModulus\AdminBlog\Models\Blog\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -43,7 +43,7 @@ class CategoriesController extends Controller
                 $category->{'meta_description_'.$locale} = $request->get('meta_description_'.$locale);
                 $category->{'meta_keywords_'.$locale} = $request->get('meta_keywords_'.$locale);
             }
-            $category->viewable = $request->get('visible', 0);
+            $category->viewable = $request->has('visible');
             $category->save();
         }catch (\Exception $e){
             return redirect()->back()->withInput()->withErrors(['errors' => $e->getMessage()]);

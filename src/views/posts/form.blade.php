@@ -161,7 +161,7 @@
                         <div class="form-group">
                             <label for="post_categories">Categories</label>
                             <select class="form-control selector" name="post_categories[]" id="post_categories" multiple>
-                                @foreach(\LaraMod\AdminBlog\Models\Blog\Categories::all() as $category)
+                                @foreach(\LaraModulus\AdminBlog\Models\Blog\Categories::all() as $category)
                                     <option value="{{$category->id}}"
                                             @if(in_array($category->id, $post->categories->pluck('id')->toArray())) selected @endif
                                     >{{$category->{'title_'.config('app.fallback_locale', 'en')} }}</option>

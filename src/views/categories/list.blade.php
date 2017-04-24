@@ -40,7 +40,7 @@
                                     {{$category->posts->count()}}
                                 </td>
                                 <td>
-                                    {!! !$category->visible ? '<i class="fa fa-eye-slash"></i>' : '<i class="fa fa-eye"></i>' !!}
+                                    {!! !$category->viewable ? '<i class="fa fa-eye-slash"></i>' : '<i class="fa fa-eye"></i>' !!}
                                 </td>
                                 <td>
                                     {{$category->created_at->format('d.m.Y H:i')}}

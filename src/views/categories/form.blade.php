@@ -89,17 +89,17 @@
                             <label for="visible">Visible?</label>
                             <div class="checkbox">
                             	<label>
-                            		<input type="checkbox" value="1" id="visible" name="visible" @if($category->visible || !$category->id) checked @endif>
+                            		<input type="checkbox" value="1" id="visible" name="visible" @if($category->viewable || !$category->id) checked @endif>
                             		Yes
                             	</label>
                             </div>
                         </div>
-                        @if(\LaraMod\AdminBlog\Models\Blog\Categories::where('id', '!=', $category->id)->count())
+                        @if(\LaraModulus\AdminBlog\Models\Blog\Categories::where('id', '!=', $category->id)->count())
                         <div class="form-group">
                             <label for="categories_id">Categories</label>
                             <select class="form-control selector" name="categories_id" id="categories_id">
                                 <option value="0">This is parent category</option>
-                                @foreach(\LaraMod\AdminBlog\Models\Blog\Categories::where('id', '!=', $category->id)->get() as $c)
+                                @foreach(\LaraModulus\AdminBlog\Models\Blog\Categories::where('id', '!=', $category->id)->get() as $c)
                                     <option value="{{$c->id}}" @if($c->id==$category->categories_id) selected @endif>{{$c->title}}</option>
                                 @endforeach
                             </select>

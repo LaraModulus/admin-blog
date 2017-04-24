@@ -1,6 +1,6 @@
 {
-    "name": "LaraMod/admin-blog",
-    "description": "LaraMod Blog Module",
+    "name": "LaraModulus/admin-blog",
+    "description": "LaraModulus Blog Module",
     "type": "library",
     "license": "MIT",
     "authors": [
