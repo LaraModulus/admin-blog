@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraModulus\AdminBlog;
+namespace LaraMod\AdminBlog;
 
 use Illuminate\Support\ServiceProvider;
 
