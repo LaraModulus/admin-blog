@@ -1,11 +1,11 @@
 <?php
-namespace LaraModulus\AdminBlog\Controllers;
+namespace LaraMod\AdminBlog\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
-use LaraModulus\AdminBlog\Models\Blog\Categories;
-use LaraModulus\AdminBlog\Models\Blog\Posts;
+use LaraMod\AdminBlog\Models\Blog\Categories;
+use LaraMod\AdminBlog\Models\Blog\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;

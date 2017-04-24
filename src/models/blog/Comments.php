@@ -1,7 +1,7 @@
 <?php
-namespace LaraModulus\AdminBlog\Models\Blog;
+namespace LaraMod\AdminBlog\Models\Blog;
 use App\User;
-use LaraModulus\AdminCore\Scopes\AdminCoreOrderByCreatedAtScope;
+use LaraMod\AdminCore\Scopes\AdminCoreOrderByCreatedAtScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
