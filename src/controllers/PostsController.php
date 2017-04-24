@@ -1,10 +1,10 @@
 <?php
-namespace LaraMod\AdminBlog\Controllers;
+namespace LaraModulus\AdminBlog\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
-use LaraMod\AdminBlog\Models\Blog\Posts;
+use LaraModulus\AdminBlog\Models\Blog\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
