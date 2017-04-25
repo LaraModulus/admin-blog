@@ -1,8 +1,8 @@
 <?php
-namespace LaraMod\AdminBlog\Controllers;
+namespace LaraMod\Admin\Blog\Controllers;
 
 use App\Http\Controllers\Controller;
-use LaraMod\AdminBlog\Models\Categories;
+use LaraMod\Admin\Blog\Models\Categories;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller

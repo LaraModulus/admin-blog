@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraMod\AdminBlog;
+namespace LaraMod\Admin\Blog;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +15,7 @@ class AdminBlogServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/views', 'adminblog');
         $this->publishes([
-            __DIR__.'/views' => base_path('resources/views/laramodulus/admin-blog'),
+            __DIR__.'/views' => base_path('resources/views/laramod/admin/blog'),
         ]);
         $this->publishes([
             __DIR__.'/../database/migrations/' => database_path('migrations')

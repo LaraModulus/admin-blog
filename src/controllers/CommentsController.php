@@ -1,8 +1,8 @@
 <?php
-namespace LaraMod\AdminBlog\Controllers;
+namespace LaraMod\Admin\Blog\Controllers;
 
 use App\Http\Controllers\Controller;
-use LaraMod\AdminBlog\Models\Comments;
+use LaraMod\Admin\Blog\Models\Comments;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller

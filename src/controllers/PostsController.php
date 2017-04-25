@@ -1,8 +1,8 @@
 <?php
-namespace LaraMod\AdminBlog\Controllers;
+namespace LaraMod\Admin\Blog\Controllers;
 
 use App\Http\Controllers\Controller;
-use LaraMod\AdminBlog\Models\Posts;
+use LaraMod\Admin\Blog\Models\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 
