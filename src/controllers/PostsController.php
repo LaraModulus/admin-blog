@@ -2,14 +2,9 @@
 namespace LaraMod\AdminBlog\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\User;
-use Carbon\Carbon;
-use LaraMod\AdminBlog\Models\Blog\Posts;
+use LaraMod\AdminBlog\Models\Posts;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Validator;
 
 class PostsController extends Controller
 {

@@ -1,5 +1,5 @@
 <?php
-namespace LaraMod\AdminBlog\Models\Blog;
+namespace LaraMod\AdminBlog\Models;
 use LaraMod\AdminCore\Scopes\AdminCoreOrderByCreatedAtScope;
 use LaraMod\AdminFiles\Models\Files;
 use Illuminate\Database\Eloquent\Model;
