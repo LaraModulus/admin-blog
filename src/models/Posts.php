@@ -1,12 +1,9 @@
 <?php
 namespace LaraMod\Admin\Blog\Models;
-use LaraMod\AdminCore\Scopes\AdminCoreOrderByCreatedAtScope;
-use LaraMod\AdminFiles\Models\Files;
+use LaraMod\Admin\Core\Scopes\AdminCoreOrderByCreatedAtScope;
+use LaraMod\Admin\Files\Models\Files;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class Posts extends Model {
     protected $table = 'blog_posts';
