@@ -11,52 +11,48 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="items_table"
+                           data-page-length="10">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Content</th>
-
-                            <th>Status</th>
-                            <th>For post</th>
+                            <th>Author</th>
+                            <th>Email</th>
+                            <th>IP</th>
+                            <th>Language</th>
                             <th>Created at</th>
+                            <th>Post</th>
                             <th><i class="fa fa-cogs"></i></th>
                         </tr>
                         </thead>
-                        <tbody>
-                        @foreach($comments as $comment)
-                            <tr>
-                                <td>
-                                    {{$comment->id}}
-                                </td>
-                                <td>
-                                    {{$comment->content }}
-                                </td>
-                                <td>
-                                    {!! $comment->isTrashed ? '<i class="fa fa-trash"></i>' : '<i class="fa fa-eye"></i>' !!}
-                                </td>
-                                <td>
-                                    #{{$comment->post ? $comment->post->id : 'Not existing post'}}
-                                </td>
-                                <td>
-                                    {{$comment->created_at->format('d.m.Y H:i')}}
-                                </td>
-                                <td>
-                                    <a href="{{route('admin.blog.comments.form', ['id' => $comment->id])}}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
-                                    <a href="{{route('admin.blog.comments.delete', ['id' => $comment->id])}}" class="btn btn-danger btn-xs require-confirm"><i class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="6">{{$comments->links()}}</td>
-                        </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
 
     </div>
+@stop
+@section('js')
+    <script type="text/javascript">
+        $(function(){
+            $('#items_table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('admin.blog.comments.datatable') !!}',
+                order: [
+                    [5, 'desc']
+                ],
+                columns: [
+                    {data:'id', name: 'ID'},
+                    {data:'author_names', name: 'author_names'},
+                    {data:'author_email', name:'author_email'},
+                    {data:'ip_address', name: 'ip_address'},
+                    {data:'lang', name:'lang', searchable:false},
+                    {data:'created_at', name: 'created_at',searchable:false},
+                    {data: 'post', name:'post', searchable:false,sortable:false},
+                    {data: 'action', name: 'action', orderable: false, searchable: false}
+                ]
+            });
+        });
+    </script>
 @stop

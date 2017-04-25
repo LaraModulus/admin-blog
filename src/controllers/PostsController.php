@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use LaraMod\Admin\Blog\Models\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
+use Yajra\Datatables\Datatables;
 
 class PostsController extends Controller
 {
@@ -17,10 +18,12 @@ class PostsController extends Controller
 
     public function index(Request $request)
     {
-        $this->data['posts'] = Posts::with(['files'])->paginate(20);
+        $this->data['items'] = Posts::with(['files'])->get();
+
         if($request->wantsJson()){
-            return response()->json($this->data);
+            return response()->json($this->data['items']);
         }
+
         return view('adminblog::posts.list', $this->data);
     }
 
@@ -98,5 +101,37 @@ class PostsController extends Controller
         ]);
     }
 
+    public function dataTable(){
+        $items = Posts::select(['id','title_en', 'views', 'publish_date', 'deleted_at', 'viewable']);
+        return DataTables::of($items)
+            ->addColumn('action', function($item){
+                return '<a href="'.route('admin.blog.posts.form', ['id' => $item->id]).'" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
+                                    <a href="'.route('admin.blog.posts.delete', ['id' => $item->id]).'" class="btn btn-danger btn-xs require-confirm"><i class="fa fa-trash"></i></a>';
+            })
+            ->editColumn('status', function($item){
+                switch ($item->status){
+                    case 'published':
+                        return '<i class="fa fa-eye"></i>';
+                        break;
+                    case 'deleted':
+                        return '<i class="fa fa-trash"></i>';
+                        break;
+                    case 'upcoming':
+                        return '<i class="fa fa-clock"></i>';
+                        break;
+                    case 'hidden':
+                        return '<i class="fa fa-eye-slash"></i>';
+                        break;
+                    default:
+                        return $item->status;
+                        break;
+                }
+            })
+            ->editColumn('publish_date', function($item){
+                return $item->publish_date->format('d.m.Y H:i');
+            })
+            ->orderColumn('publish_date $1','created_at $1')
+            ->make('true');
+    }
 
 }

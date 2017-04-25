@@ -14,6 +14,8 @@ Route::group([
         Route::post('/form', ['as' => 'admin.blog.posts.form', 'uses' => 'PostsController@postForm']);
 
         Route::get('/delete', ['as' => 'admin.blog.posts.delete', 'uses' => 'PostsController@delete']);
+
+        Route::get('/datatable', ['as' => 'admin.blog.posts.datatable', 'uses' => 'PostsController@dataTable']);
     });
 
     Route::group([
@@ -24,6 +26,8 @@ Route::group([
         Route::post('/form', ['as' => 'admin.blog.categories.form', 'uses' => 'CategoriesController@postForm']);
 
         Route::get('/delete', ['as' => 'admin.blog.categories.delete', 'uses' => 'CategoriesController@delete']);
+        Route::get('/datatable', ['as' => 'admin.blog.categories.datatable', 'uses' => 'CategoriesController@dataTable']);
+
     });
 
     Route::group([
@@ -34,6 +38,7 @@ Route::group([
         Route::post('/form', ['as' => 'admin.blog.comments.form', 'uses' => 'CommentsController@postForm']);
 
         Route::get('/delete', ['as' => 'admin.blog.comments.delete', 'uses' => 'CommentsController@delete']);
+        Route::get('/datatable', ['as' => 'admin.blog.comments.datatable', 'uses' => 'CommentsController@dataTable']);
     });
 
 
