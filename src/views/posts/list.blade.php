@@ -11,7 +11,9 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="items_table"
+                           data-page-length="10"
+                    >
                         <thead>
                         <tr>
                             <td colspan="4">
@@ -28,40 +30,32 @@
                             <th><i class="fa fa-cogs"></i></th>
                         </tr>
                         </thead>
-                        <tbody>
-                        @foreach($posts as $post)
-                            <tr>
-                                <td>
-                                    {{$post->id}}
-                                </td>
-                                <td>
-                                    {{$post->{'title_'.config('app.fallback_locale', 'en')} }}
-                                </td>
-                                <td>
-                                    {{$post->status}}
-                                </td>
-                                <td>
-                                    {{$post->views}}
-                                </td>
-                                <td>
-                                    {{$post->publish_date->format('d.m.Y H:i')}}
-                                </td>
-                                <td>
-                                    <a href="{{route('admin.blog.posts.form', ['id' => $post->id])}}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
-                                    <a href="{{route('admin.blog.posts.delete', ['id' => $post->id])}}" class="btn btn-danger btn-xs require-confirm"><i class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="6">{{$posts->links()}}</td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
 
     </div>
+@stop
+@section('js')
+    <script type="text/javascript">
+    $(function(){
+        $('#items_table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('admin.blog.posts.datatable') !!}',
+            order: [
+                [4, 'desc']
+            ],
+            columns: [
+                {data:'id', name: 'ID'},
+                {data:'title_en', name: 'title_en'},
+                {data:'status', searchable:false, orderable:false},
+                {data:'views', searchable:false},
+                {data:'publish_date', searchable:false},
+                {data: 'action', name: 'action', orderable: false, searchable: false}
+            ]
+        });
+    });
+    </script>
 @stop

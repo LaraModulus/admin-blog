@@ -11,7 +11,8 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="items_table"
+                           data-page-length="10">
                         <thead>
                         <tr>
                             <td colspan="4">
@@ -27,40 +28,32 @@
                             <th><i class="fa fa-cogs"></i></th>
                         </tr>
                         </thead>
-                        <tbody>
-                        @foreach($categories as $category)
-                            <tr>
-                                <td>
-                                    {{$category->id}}
-                                </td>
-                                <td>
-                                    {{$category->{'title_'.config('app.fallback_locale', 'en')} }}
-                                </td>
-                                <td>
-                                    {{$category->posts->count()}}
-                                </td>
-                                <td>
-                                    {!! !$category->viewable ? '<i class="fa fa-eye-slash"></i>' : '<i class="fa fa-eye"></i>' !!}
-                                </td>
-                                <td>
-                                    {{$category->created_at->format('d.m.Y H:i')}}
-                                </td>
-                                <td>
-                                    <a href="{{route('admin.blog.categories.form', ['id' => $category->id])}}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
-                                    <a href="{{route('admin.blog.categories.delete', ['id' => $category->id])}}" class="btn btn-danger btn-xs require-confirm"><i class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="6">{{$categories->links()}}</td>
-                        </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
 
     </div>
+@stop
+@section('js')
+    <script type="text/javascript">
+        $(function(){
+            $('#items_table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('admin.blog.categories.datatable') !!}',
+                order: [
+                    [4, 'desc']
+                ],
+                columns: [
+                    {data:'id', name: 'ID'},
+                    {data:'title_en', name: 'title_en'},
+                    {data:'posts_count', name:'posts_count', searchable: false, orderable: false},
+                    {data:'status', searchable:false, orderable:false},
+                    {data:'created_at', searchable:false},
+                    {data: 'action', name: 'action', orderable: false, searchable: false}
+                ]
+            });
+        });
+    </script>
 @stop

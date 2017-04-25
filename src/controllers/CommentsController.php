@@ -4,6 +4,7 @@ namespace LaraMod\Admin\Blog\Controllers;
 use App\Http\Controllers\Controller;
 use LaraMod\Admin\Blog\Models\Comments;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class CommentsController extends Controller
 {
@@ -72,6 +73,26 @@ class CommentsController extends Controller
             'type' => 'success',
             'text' => 'Comment moved to trash.'
         ]);
+    }
+
+    public function dataTable(){
+        $items = Comments::select(['id','author_names', 'author_email', 'ip_address', 'lang', 'created_at','blog_posts_id']);
+        return DataTables::of($items)
+            ->addColumn('action', function($item){
+                return '<a href="'.route('admin.blog.comments.form', ['id' => $item->id]).'" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
+                                    <a href="'.route('admin.blog.comments.delete', ['id' => $item->id]).'" class="btn btn-danger btn-xs require-confirm"><i class="fa fa-trash"></i></a>';
+            })
+            ->addColumn('post', function($item){
+                if(!$item->post){
+                    return 'No post';
+                }
+                return '<a target="_blank" href="'.route('admin.blog.posts.form', ['id' => $item->blog_posts_id]).'" title="#'.$item->blog_posts_id.' '.$item->post->title_en.'">Post #'.$item->blog_posts_id.'</a>';
+            })
+            ->editColumn('created_at', function($item){
+                return $item->created_at->format('d.m.Y H:i');
+            })
+            ->orderColumn('created_at $1','id $1')
+            ->make('true');
     }
 
 

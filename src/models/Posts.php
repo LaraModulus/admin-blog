@@ -17,6 +17,7 @@ class Posts extends Model {
         'viewable' => 'boolean',
         'views' => 'integer'
     ];
+    protected $appends = ['status'];
 
     protected function bootIfNotBooted(){
         parent::boot();

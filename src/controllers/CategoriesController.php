@@ -4,6 +4,7 @@ namespace LaraMod\Admin\Blog\Controllers;
 use App\Http\Controllers\Controller;
 use LaraMod\Admin\Blog\Models\Categories;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class CategoriesController extends Controller
 {
@@ -70,6 +71,26 @@ class CategoriesController extends Controller
             'type' => 'success',
             'text' => 'Categories moved to trash.'
         ]);
+    }
+
+    public function dataTable(){
+        $items = Categories::select(['id','title_en', 'created_at','viewable']);
+        return Datatables::of($items)
+            ->addColumn('posts_count', function($item){
+                return $item->posts->count();
+            })
+            ->addColumn('action', function($item){
+                return '<a href="'.route('admin.blog.categories.form', ['id' => $item->id]).'" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
+                                    <a href="'.route('admin.blog.categories.delete', ['id' => $item->id]).'" class="btn btn-danger btn-xs require-confirm"><i class="fa fa-trash"></i></a>';
+            })
+            ->addColumn('status', function($item){
+                return !$item->viewable ? '<i class="fa fa-eye-slash"></i>' : '<i class="fa fa-eye"></i>';
+            })
+            ->editColumn('created_at', function($item){
+               return $item->created_at->format('d.m.Y H:i');
+            })
+            ->orderColumn('created_at $1', 'id $1')
+            ->make('true');
     }
 
 
