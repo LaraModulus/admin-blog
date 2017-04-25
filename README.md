@@ -13,7 +13,7 @@ composer require laramod\admin-blog
 ```php 
 'providers' => [
     ...
-    LaraMod\AdminBlog\AdminBlogServiceProvider::class,
+    LaraMod\Admin\Blog\AdminBlogServiceProvider::class,
 ]
 ```
 **Publish migrations**

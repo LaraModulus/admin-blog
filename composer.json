@@ -1,6 +1,6 @@
 {
     "name": "laramod/admin-blog",
-    "description": "LaraModulus Blog Module",
+    "description": "LaraMod Blog Module",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -16,7 +16,7 @@
     },
     "autoload": {
       "psr-4": {
-        "LaraMod\\AdminBlog\\": "src/"
+        "LaraMod\\Admin\\Blog\\": "src/"
       }
     }
 }

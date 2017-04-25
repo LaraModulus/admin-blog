@@ -1,15 +1,9 @@
 <?php
-namespace LaraMod\AdminBlog\Controllers;
+namespace LaraMod\Admin\Blog\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\User;
-use Carbon\Carbon;
-use LaraMod\AdminBlog\Models\Blog\Categories;
-use LaraMod\AdminBlog\Models\Blog\Comments;
-use LaraMod\AdminBlog\Models\Blog\Posts;
+use LaraMod\Admin\Blog\Models\Comments;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class CommentsController extends Controller
 {
