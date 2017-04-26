@@ -3,7 +3,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix' => 'admin/blog',
-    'middleware' => ['web', 'auth'],
+    'middleware' => ['admin', 'auth.admin'],
     'namespace' => 'LaraMod\Admin\Blog\Controllers',
 ], function(){
     Route::group([
