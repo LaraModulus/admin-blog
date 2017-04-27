@@ -143,19 +143,13 @@
                         <div class="form-group">
                             <label for="visible">Visible?</label>
                             <div class="checkbox">
-                            	<label>
-                            		<input type="checkbox" value="1" id="visible" name="visible" @if($post->viewable || !$post->id) checked @endif>
-                            		Yes
-                            	</label>
+                                <input type="checkbox" value="1" id="visible" name="visible" @if($post->viewable || !$post->id) checked @endif>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="allow_comments">Allow comments?</label>
                             <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="1" id="allow_comments" name="allow_comments" @if($post->allow_comments || !$post->id) checked @endif>
-                                    Yes
-                                </label>
+                                <input type="checkbox" value="1" id="allow_comments" name="allow_comments" @if($post->allow_comments || !$post->id) checked @endif>
                             </div>
                         </div>
                         <div class="form-group">

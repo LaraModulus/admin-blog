@@ -88,10 +88,7 @@
                         <div class="form-group">
                             <label for="visible">Visible?</label>
                             <div class="checkbox">
-                            	<label>
-                            		<input type="checkbox" value="1" id="visible" name="visible" @if($category->viewable || !$category->id) checked @endif>
-                            		Yes
-                            	</label>
+                                <input type="checkbox" value="1" id="visible" name="visible" @if($category->viewable || !$category->id) checked @endif>
                             </div>
                         </div>
                         @if(\LaraMod\Admin\Blog\Models\Categories::where('id', '!=', $category->id)->count())
