@@ -18,13 +18,12 @@ class PostsController extends Controller
 
     public function index(Request $request)
     {
-        $this->data['items'] = Posts::with(['files'])->get();
 
         if($request->wantsJson()){
-            return response()->json($this->data['items']);
+            return Posts::with('files')->paginate(20);
         }
 
-        return view('adminblog::posts.list', $this->data);
+        return view('adminblog::posts.list');
     }
 
     public function getForm(Request $request)

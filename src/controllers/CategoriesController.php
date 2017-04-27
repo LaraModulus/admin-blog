@@ -15,15 +15,20 @@ class CategoriesController extends Controller
         config()->set('admincore.menu.blog.active', true);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $this->data['categories'] = Categories::paginate(20);
-        return view('adminblog::categories.list', $this->data);
+        if($request->wantsJson()){
+            return Categories::paginate(20);
+        }
+        return view('adminblog::categories.list');
     }
 
     public function getForm(Request $request)
     {
         $this->data['category'] = ($request->has('id') ? Categories::find($request->get('id')) : new Categories());
+        if($request->wantsJson()){
+            return $this->data;
+        }
         return view('adminblog::categories.form', $this->data);
     }
 

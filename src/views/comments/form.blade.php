@@ -73,10 +73,11 @@
                         @endif
                         <div class="form-group">
                             <label for="blog_posts_id">Post</label>
-                            <input type="text" class="form-control" name="blog_posts_id" id="blog_posts_id" value="{{old('blog_posts_id', $comment->blog_posts_id)}}">
-                            @if($comment->post)
-                            <small class="help-block">{{$comment->post->title}}</small>
-                            @endif
+                            <select class="form-control select2" name="blog_posts_id" id="blog_posts_id">
+                                @foreach(\LaraMod\Admin\Blog\Models\Posts::select(['id', 'title_en'])->get() as $post)
+                                <option value="{{$post->id}}" @if($comment->blog_posts_id==$post->id) selected @endif >{{$post->title_en}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         {{ csrf_field() }}
                         <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>

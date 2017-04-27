@@ -160,7 +160,8 @@
                         </div>
                         <div class="form-group">
                             <label for="post_categories">Categories</label>
-                            <select class="form-control selector" name="post_categories[]" id="post_categories" multiple>
+
+                            <select class="form-control select2" name="post_categories[]" id="post_categories" multiple tabindex="-1" aria-hidden="true">
                                 @foreach(\LaraMod\Admin\Blog\Models\Categories::all() as $category)
                                     <option value="{{$category->id}}"
                                             @if(in_array($category->id, $post->categories->pluck('id')->toArray())) selected @endif
@@ -200,6 +201,7 @@
             };
 
         });
+
     </script>
     @endif
 @stop
