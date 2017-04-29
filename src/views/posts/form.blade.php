@@ -141,9 +141,9 @@
                             <input type="text" name="publish_date" id="publish_date" class="form-control" value="{{old('publish_date', $post->publish_date)}}">
                         </div>
                         <div class="form-group">
-                            <label for="visible">Visible?</label>
+                            <label for="viewable">Visible?</label>
                             <div class="checkbox">
-                                <input type="checkbox" value="1" id="visible" name="visible" @if($post->viewable || !$post->id) checked @endif>
+                                <input type="checkbox" value="1" id="viewable" name="viewable" @if($post->viewable || !$post->id) checked @endif>
                             </div>
                         </div>
                         <div class="form-group">

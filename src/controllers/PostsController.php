@@ -38,20 +38,9 @@ class PostsController extends Controller
     public function postForm(Request $request)
     {
 
-        $post = $request->has('id') ? Posts::find($request->get('id')) : new Posts();
+        $post = Posts::firstOrCreate(['id' => $request->get('id')]);
         try{
-            foreach(config('app.locales', [config('app.fallback_locale', 'en')]) as $locale){
-                $post->{'title_'.$locale} = $request->get('title_'.$locale);
-                $post->{'content_'.$locale} = $request->get('content_'.$locale);
-                $post->{'excerpt_'.$locale} = $request->get('excerpt_'.$locale);
-                $post->{'meta_title_'.$locale} = $request->get('meta_title_'.$locale);
-                $post->{'meta_description_'.$locale} = $request->get('meta_description_'.$locale);
-                $post->{'meta_keywords_'.$locale} = $request->get('meta_keywords_'.$locale);
-            }
-            $post->viewable = $request->has('visible');
-            $post->allow_comments = $request->get('allow_comments', 0);
-            $post->publish_date = $request->get('publish_date') ?: \Carbon\Carbon::now();
-            $post->save();
+            $post->update($request->only($post->getFillable()));
 
             $post->categories()->sync($request->get('post_categories', []));
 

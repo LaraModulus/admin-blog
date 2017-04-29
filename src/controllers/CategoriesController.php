@@ -35,17 +35,9 @@ class CategoriesController extends Controller
     public function postForm(Request $request)
     {
 
-        $category = $request->has('id') ? Categories::find($request->get('id')) : new Categories();
+        $category = Categories::firstOrCreate(['id' => $request->get('id')]);
         try{
-            foreach(config('app.locales', [config('app.fallback_locale', 'en')]) as $locale){
-                $category->{'title_'.$locale} = $request->get('title_'.$locale);
-                $category->{'content_'.$locale} = $request->get('content_'.$locale);
-                $category->{'meta_title_'.$locale} = $request->get('meta_title_'.$locale);
-                $category->{'meta_description_'.$locale} = $request->get('meta_description_'.$locale);
-                $category->{'meta_keywords_'.$locale} = $request->get('meta_keywords_'.$locale);
-            }
-            $category->viewable = $request->has('visible');
-            $category->save();
+            $category->update($request->only($category->getFillable()));
         }catch (\Exception $e){
             return redirect()->back()->withInput()->withErrors(['errors' => $e->getMessage()]);
         }

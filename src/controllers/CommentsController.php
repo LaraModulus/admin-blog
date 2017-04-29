@@ -35,19 +35,12 @@ class CommentsController extends Controller
     public function postForm(Request $request)
     {
 
-        $comment = $request->has('id') ? Comments::find($request->get('id')) : new Comments();
+        $comment = Comments::firstOrCreate(['id' => $request->get('id')]);
         try{
-            $comment->content = $request->get('content');
-            $comment->author_names = $request->get('author_names');
-            $comment->author_url = $request->get('author_names');
-            $comment->author_email = $request->get('author_email');
-            $comment->blog_posts_id = $request->get('blog_posts_id');
             /**
              * TODO: Implement language selection and users id
              */
-            $comment->lang = $request->get('lang', config('app.fallback_locale'));
-            $comment->users_id = $request->get('users_id');
-            $comment->save();
+            $comment->update($request->only($comment->getFillable()));
         }catch (\Exception $e){
             return redirect()->back()->withInput()->withErrors(['errors' => $e->getMessage()]);
         }

@@ -44,8 +44,9 @@
                                 <input type="text" class="form-control" name="author_email" id="author_email" value="{{old('author_email', $comment->author_email)}}">
                             </div>
                             <div class="form-group">
-                                <label>IP Address</label>
-                                <p class="form-control-static">{{$comment->ip_address}}</p>
+                                <label for="ip_address">IP Address</label>
+                                <input type="text" readonly class="form-control" name="ip_address" id="ip_address" value="{{$comment->ip_address}}">
+
                             </div>
                             <div class="form-group">
                                 <label for="content"
@@ -71,6 +72,14 @@
                             <p class="form-control-static">{{$comment->created_at->format('d.m.Y H:i')}} ({{$comment->created_at->diffForHumans()}})</p>
                         </div>
                         @endif
+                            <div class="form-group">
+                                <label for="lang">Language</label>
+                                <select class="form-control" name="lang" id="lang">
+                                    @foreach(config('app.locales', [config('app.fallback_locale','en')]) as $lang)
+                                    <option value="{{$lang}}" @if($lang==$comment->lang) selected @endif>{{$lang}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         <div class="form-group">
                             <label for="blog_posts_id">Post</label>
                             <select class="form-control select2" name="blog_posts_id" id="blog_posts_id">

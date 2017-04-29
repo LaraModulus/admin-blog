@@ -14,6 +14,17 @@ class Comments extends Model {
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
 
+    protected $fillable = [
+        'author_names',
+        'author_url',
+        'author_email',
+        'users_id',
+        'content',
+        'ip_address',
+        'lang',
+        'blog_posts_id'
+    ];
+
     protected function bootIfNotBooted(){
         parent::boot();
         static::addGlobalScope(new AdminCoreOrderByCreatedAtScope());

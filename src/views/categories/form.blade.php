@@ -86,9 +86,9 @@
                 <div class="panel panel-default">
                 	<div class="panel-body">
                         <div class="form-group">
-                            <label for="visible">Visible?</label>
+                            <label for="viewable">Visible?</label>
                             <div class="checkbox">
-                                <input type="checkbox" value="1" id="visible" name="visible" @if($category->viewable || !$category->id) checked @endif>
+                                <input type="checkbox" value="1" id="viewable" name="viewable" @if($category->viewable || !$category->id) checked @endif>
                             </div>
                         </div>
                         @if(\LaraMod\Admin\Blog\Models\Categories::where('id', '!=', $category->id)->count())
