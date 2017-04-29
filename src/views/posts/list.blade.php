@@ -39,23 +39,23 @@
 @stop
 @section('js')
     <script type="text/javascript">
-    $(function(){
-        $('#items_table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{!! route('admin.blog.posts.datatable') !!}',
-            order: [
-                [4, 'desc']
-            ],
-            columns: [
-                {data:'id', name: 'ID'},
-                {data:'title_en', name: 'title_en'},
-                {data:'status', searchable:false, orderable:false},
-                {data:'views', searchable:false},
-                {data:'publish_date', searchable:false},
-                {data: 'action', name: 'action', orderable: false, searchable: false}
-            ]
+        $(function () {
+            $('#items_table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('admin.blog.posts.datatable') !!}',
+                order: [
+                    [4, 'desc']
+                ],
+                columns: [
+                    {data: 'id', name: 'ID'},
+                    {data: 'title_en', name: 'title_en'},
+                    {data: 'status', searchable: false, orderable: false},
+                    {data: 'views', searchable: false},
+                    {data: 'publish_date', searchable: false},
+                    {data: 'action', name: 'action', orderable: false, searchable: false}
+                ]
+            });
         });
-    });
     </script>
 @stop

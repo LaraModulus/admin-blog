@@ -1,11 +1,14 @@
 <?php
+
 namespace LaraMod\Admin\Blog\Models;
+
 use App\User;
 use LaraMod\Admin\Core\Scopes\AdminCoreOrderByCreatedAtScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Comments extends Model {
+class Comments extends Model
+{
     protected $table = 'blog_comments';
     public $timestamps = true;
 
@@ -22,10 +25,11 @@ class Comments extends Model {
         'content',
         'ip_address',
         'lang',
-        'blog_posts_id'
+        'blog_posts_id',
     ];
 
-    protected function bootIfNotBooted(){
+    protected function bootIfNotBooted()
+    {
         parent::boot();
         static::addGlobalScope(new AdminCoreOrderByCreatedAtScope());
     }
@@ -35,7 +39,8 @@ class Comments extends Model {
         return $this->hasOne(Posts::class, 'id', 'blog_posts_id');
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->hasOne(User::class, 'id', 'users_id');
     }
 
