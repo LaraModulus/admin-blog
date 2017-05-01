@@ -43,7 +43,9 @@ class PostsController extends Controller
 
         $post = Posts::firstOrCreate(['id' => $request->get('id')]);
         try {
-            $post->update($request->only($post->getFillable()));
+            $post->update(array_filter($request->only($post->getFillable()), function($key) use ($request, $post){
+                return in_array($key, array_keys($request->all())) || @$post->getCasts()[$key]=='boolean';
+            }, ARRAY_FILTER_USE_KEY));
 
             $post->categories()->sync($request->get('post_categories', []));
 

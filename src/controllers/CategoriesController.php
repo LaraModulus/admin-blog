@@ -41,7 +41,10 @@ class CategoriesController extends Controller
 
         $category = Categories::firstOrCreate(['id' => $request->get('id')]);
         try {
-            $category->update($request->only($category->getFillable()));
+            $category->update(array_filter($request->only($category->getFillable()), function($key) use ($request, $category){
+               return in_array($key, array_keys($request->all())) || @$category->getCasts()[$key]=='boolean';
+            }, ARRAY_FILTER_USE_KEY));
+
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors(['errors' => $e->getMessage()]);
         }

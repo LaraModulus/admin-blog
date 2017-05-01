@@ -44,7 +44,9 @@ class CommentsController extends Controller
             /**
              * TODO: Implement language selection and users id
              */
-            $comment->update($request->only($comment->getFillable()));
+            $comment->update(array_filter($request->only($comment->getFillable()), function($key) use ($request, $comment){
+                return in_array($key, array_keys($request->all())) || @$comment->getCasts()[$key]=='boolean';
+            }, ARRAY_FILTER_USE_KEY));
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors(['errors' => $e->getMessage()]);
         }
