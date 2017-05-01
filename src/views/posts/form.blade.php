@@ -162,7 +162,8 @@
                         <div class="panel-body">
                             <div class="form-group">
                                 <label for="publish_date">Publish date</label>
-                                <input type="text" name="publish_date" id="publish_date" class="form-control"
+                                <input type="text" name="publish_date" id="publish_date" class="form-control datetimepicker"
+                                       date-date-format=""
                                        value="{{old('publish_date', $post->publish_date)}}">
                             </div>
                             <div class="form-group">
