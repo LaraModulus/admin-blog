@@ -62,7 +62,7 @@
                                                class="control-label">Excerpt </label>
 
                                         <textarea name="excerpt_{{$locale}}" id="excerpt_{{$locale}}" cols="30" rows="3"
-                                                  class="form-control editor">{{old('excerpt_'.$locale, $post->{'excerpt_'.$locale})}}</textarea>
+                                                  class="form-control ">{{old('excerpt_'.$locale, $post->{'excerpt_'.$locale})}}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="meta_title_{{$locale}}" class="control-label">Meta title</label>
@@ -79,7 +79,7 @@
 
                                         <textarea name="meta_description_{{$locale}}" id="meta_description_{{$locale}}"
                                                   cols="30" rows="3"
-                                                  class="form-control editor">{{old('meta_description_'.$locale, $post->{'meta_description_'.$locale})}}</textarea>
+                                                  class="form-control ">{{old('meta_description_'.$locale, $post->{'meta_description_'.$locale})}}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="meta_keywords_{{$locale}}" class="control-label">Meta
@@ -88,6 +88,7 @@
                                         <input type="text" class="form-control" name="meta_keywords_{{$locale}}"
                                                id="meta_keywords_{{$locale}}"
                                                placeholder=""
+                                               data-role="tagsinput"
                                                value="{{old('meta_keywords_'.$locale, $post->{'meta_keywords_'.$locale})}}">
 
                                     </div>
