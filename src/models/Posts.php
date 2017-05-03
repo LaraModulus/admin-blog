@@ -67,6 +67,10 @@ class Posts extends Model
         return $this->hasMany(Comments::class);
     }
 
+    public function tags(){
+        return $this->belongsToMany(Tags::class,'blog_post_tag','post_id','tag_id');
+    }
+
     public function getStatusAttribute()
     {
         if ($this->deleted_at) {

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use LaraMod\Admin\Blog\Models\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
+use LaraMod\Admin\Blog\Models\Tags;
 use Yajra\Datatables\Datatables;
 
 class PostsController extends Controller
@@ -48,6 +49,13 @@ class PostsController extends Controller
             }, ARRAY_FILTER_USE_KEY));
 
             $post->categories()->sync($request->get('post_categories', []));
+
+            $post_tags = [];
+            foreach(explode(',', $request->get('tags')) as $tag){
+                $t = Tags::firstOrCreate(['name' => $tag]);
+                $post_tags[] = $t->id;
+            }
+            $post->tags()->sync($post_tags);
 
             $files = [];
             if ($request->get('files') && Schema::hasTable('files_relations')) {
@@ -95,6 +103,20 @@ class PostsController extends Controller
         ]);
     }
 
+    public function getTags(Request $request){
+        if($request->has('post_id')){
+            return Posts::find($request->get('post_id'))->tags;
+        }
+        $tags = new Tags();
+        if($request->has('term')){
+            $tags = $tags->where('name','like','%'.$request->get('term').'%');
+        }
+        if($request->has('tagsinput')){
+            $tags = $tags->select(\DB::raw('name as value'));
+        }
+        return $tags->limit(5)->get();
+    }
+
     public function dataTable()
     {
         $items = Posts::select(['id', 'title_en', 'views', 'publish_date', 'deleted_at', 'viewable']);
@@ -114,7 +136,7 @@ class PostsController extends Controller
                         return '<i class="fa fa-trash"></i>';
                         break;
                     case 'upcoming':
-                        return '<i class="fa fa-clock"></i>';
+                        return '<i class="fa fa-clock-o"></i>';
                         break;
                     case 'hidden':
                         return '<i class="fa fa-eye-slash"></i>';

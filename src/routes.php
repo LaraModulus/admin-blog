@@ -16,6 +16,7 @@ Route::group([
         Route::get('/delete', ['as' => 'admin.blog.posts.delete', 'uses' => 'PostsController@delete']);
 
         Route::get('/datatable', ['as' => 'admin.blog.posts.datatable', 'uses' => 'PostsController@dataTable']);
+        Route::get('/tags', ['as' => 'admin.blog.posts.tags', 'uses' => 'PostsController@getTags']);
     });
 
     Route::group([

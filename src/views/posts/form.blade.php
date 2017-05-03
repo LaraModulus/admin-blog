@@ -98,6 +98,19 @@
                             </div>
                         @endforeach
                     </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <label for="tags">Tags</label>
+                                <input class="form-control" name="tags" id="tags" autocomplete="off"
+                                       @if($post)
+                                       value="{{implode(',', $post->tags->pluck('name')->toArray())}}"
+                                       @endif
+                                       data-url="{{route('admin.blog.posts.tags')}}?tagsinput=true">
+                            </div>
+                        </div>
+                    </div>
                     @if(class_exists(\LaraMod\Admin\Files\AdminFilesServiceProvider::class))
                         <div class="panel panel-default" data-ng-controller="filesContainerController">
                             <div class="panel-body">
@@ -163,7 +176,6 @@
                             <div class="form-group">
                                 <label for="publish_date">Publish date</label>
                                 <input type="text" name="publish_date" id="publish_date" class="form-control datetimepicker"
-                                       date-date-format=""
                                        value="{{old('publish_date', $post->publish_date)}}">
                             </div>
                             <div class="form-group">
@@ -227,4 +239,21 @@
 
         </script>
     @endif
+@stop
+@section('js')
+    <script>
+        $(function(){
+            $('#tags').tagsInput({
+                width: '100%',
+                height: 'auto',
+                autocomplete_url: $('#tags').data('url'),
+                autocomplete: {
+                    selectFirst: true,
+                    autoFill: true
+                },
+                interactive: true,
+                minChars: 2
+            });
+        })
+    </script>
 @stop
