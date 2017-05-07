@@ -22,6 +22,7 @@ class CommentsController extends Controller
         if ($request->wantsJson()) {
             return Comments::paginate(20);
         }
+        session()->set('comments.last_open', time());
 
         return view('adminblog::comments.list');
     }
@@ -113,5 +114,11 @@ class CommentsController extends Controller
             ->make('true');
     }
 
+    public function commentsWidget(){
+        config()->set('admincore.menu.blog.active', false);
+        return view('adminblog::comments.widget', [
+            'comments_count' => Comments::where('created_at', '>', \Carbon\Carbon::parse(session('comments.last_open', new \Carbon\Carbon('yesterday'))))->count()
+        ])->render();
+    }
 
 }
