@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-xs-9 text-right">
                     <div class="huge">{{$comments_count}}</div>
-                    <div>New Comments!</div>
+                    <div>since yesterday</div>
                 </div>
             </div>
         </div>
