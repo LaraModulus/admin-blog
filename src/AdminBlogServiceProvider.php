@@ -28,8 +28,11 @@ class AdminBlogServiceProvider extends ServiceProvider
         /**
          * Add comments widget to controller
          */
-        $this->addWidget($this->app->make(CommentsController::class)->commentsWidget());
-
+        try{
+            $this->addWidget($this->app->make(CommentsController::class)->commentsWidget());
+        }catch (\Exception $e){
+            $this->addWidget($e->getMessage());
+        }
     }
 
     /**
