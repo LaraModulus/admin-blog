@@ -71,6 +71,10 @@ class Posts extends Model
         return $this->belongsToMany(Tags::class,'blog_post_tag','post_id','tag_id');
     }
 
+    public function series(){
+        return $this->belongsToMany(Series::class,'blog_post_series','post_id', 'serie_id');
+    }
+
     public function getStatusAttribute()
     {
         if ($this->deleted_at) {

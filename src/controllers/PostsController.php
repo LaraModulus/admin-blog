@@ -22,11 +22,17 @@ class PostsController extends Controller
     public function index(Request $request)
     {
 
+        $items = Posts::with(['files']);
+        if($request->has('q')){
+            $items->where('title_en', 'like', '%'.$request->get('q').'%');
+        }
+        $this->data['items'] = $items->paginate(20);
+
         if ($request->wantsJson()) {
-            return Posts::with('files')->paginate(20);
+            return response()->json($this->data);
         }
 
-        return view('adminblog::posts.list');
+        return view('adminblog::posts.list', $this->data);
     }
 
     public function getForm(Request $request)
@@ -56,6 +62,7 @@ class PostsController extends Controller
                 $post_tags[] = $t->id;
             }
             $post->tags()->sync($post_tags);
+            $post->series()->sync($request->get('series', []));
 
             $files = [];
             if ($request->get('files') && Schema::hasTable('files_relations')) {

@@ -109,6 +109,15 @@
                                        @endif
                                        data-url="{{route('admin.blog.posts.tags')}}?tagsinput=true">
                             </div>
+                            <div class="form-group">
+                                <label for="series_ids">Series</label>
+                                {{--<input type="hidden" id="products_ids" name="products">--}}
+                                <select multiple class="form-control" name="series[]" id="series_ids">
+                                    @foreach($post->series as $s)
+                                        <option value="{{$s->id}}">{{$s->title_en}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                     @if(class_exists(\LaraMod\Admin\Files\AdminFilesServiceProvider::class))
@@ -167,7 +176,6 @@
                         </div>
 
                     @endif
-
 
                 </div>
                 <div class="col-md-3">
@@ -254,6 +262,62 @@
                 interactive: true,
                 minChars: 2
             });
-        })
+        });
+        function formatItems (item) {
+            if (item.loading) return item.text;
+
+            var markup = '<ul class="list-unstyled">' +
+                '<li>['+item.id+'] ' + item.title_en + '</li>';
+
+            markup += '</ul>';
+
+            return markup;
+        }
+
+        function formatItemsSelection (item) {
+            return item.title_en;
+        }
+
+        $(document).ready(function(){
+
+            $("#series_ids").select2({
+                theme: 'bootstrap',
+                multiple: true,
+                data: {!! $post->series()->select(['id','title_en'])->get()->map(function($post){
+                        return [
+                            "id" => $post->id,
+                            "title_en" => $post->title_en
+                        ];
+                    }) !!},
+                ajax: {
+                    url: "{{route('admin.blog.series')}}",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            q: params.term, // search term
+                            page: params.page || 1
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        return {
+                            results: data.items.data,
+                            pagination: {
+                                more: (params.page * 20) < data.items.total
+                            }
+                        };
+                    },
+                    cache: true
+                },
+                escapeMarkup: function (markup) { return markup; },
+                minimumInputLength: 1,
+                templateResult: formatItems,
+                templateSelection: formatItemsSelection //
+
+            })
+                .val({!! $post->series->pluck('id') !!})
+                .trigger('change');
+        });
     </script>
 @stop

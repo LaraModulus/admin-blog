@@ -43,5 +43,16 @@ Route::group([
         Route::get('/datatable', ['as' => 'admin.blog.comments.datatable', 'uses' => 'CommentsController@dataTable']);
     });
 
+    Route::group([
+        'prefix' => 'series',
+    ], function(){
+        Route::get('/', ['as' => 'admin.blog.series', 'uses' => 'SeriesController@index']);
+        Route::get('/form', ['as' => 'admin.blog.series.form', 'uses' => 'SeriesController@getForm']);
+        Route::post('/form', ['as' => 'admin.blog.series.form', 'uses' => 'SeriesController@postForm']);
+
+        Route::get('/delete', ['as' => 'admin.blog.series.delete', 'uses' => 'SeriesController@delete']);
+        Route::get('/datatable', ['as' => 'admin.blog.series.datatable', 'uses' => 'SeriesController@dataTable']);
+    });
+
 
 });
