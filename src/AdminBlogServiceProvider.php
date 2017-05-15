@@ -3,7 +3,10 @@
 namespace LaraMod\Admin\Blog;
 
 use Illuminate\Support\ServiceProvider;
+use LaraMod\Admin\Blog\Controllers\CategoriesController;
 use LaraMod\Admin\Blog\Controllers\CommentsController;
+use LaraMod\Admin\Blog\Controllers\PostsController;
+use LaraMod\Admin\Blog\Controllers\SeriesController;
 use LaraMod\Admin\Core\Traits\DashboardTrait;
 
 class AdminBlogServiceProvider extends ServiceProvider
@@ -16,7 +19,6 @@ class AdminBlogServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         $this->loadViewsFrom(__DIR__ . '/views', 'adminblog');
         $this->publishes([
             __DIR__ . '/views' => base_path('resources/views/laramod/admin/blog'),
@@ -43,5 +45,9 @@ class AdminBlogServiceProvider extends ServiceProvider
     public function register()
     {
         include __DIR__ . '/routes.php';
+        $this->app->make(CommentsController::class);
+        $this->app->make(PostsController::class);
+        $this->app->make(CategoriesController::class);
+        $this->app->make(SeriesController::class);
     }
 }
