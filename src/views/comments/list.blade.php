@@ -34,7 +34,7 @@
 @stop
 @section('js')
     <script type="text/javascript">
-        $(function(){
+        $(function () {
             $('#items_table').DataTable({
                 processing: true,
                 serverSide: true,
@@ -43,13 +43,13 @@
                     [5, 'desc']
                 ],
                 columns: [
-                    {data:'id', name: 'ID'},
-                    {data:'author_names', name: 'author_names'},
-                    {data:'author_email', name:'author_email'},
-                    {data:'ip_address', name: 'ip_address'},
-                    {data:'lang', name:'lang', searchable:false},
-                    {data:'created_at', name: 'created_at',searchable:false},
-                    {data: 'post', name:'post', searchable:false,sortable:false},
+                    {data: 'id', name: 'ID'},
+                    {data: 'author_names', name: 'author_names'},
+                    {data: 'author_email', name: 'author_email'},
+                    {data: 'ip_address', name: 'ip_address'},
+                    {data: 'lang', name: 'lang', searchable: false},
+                    {data: 'created_at', name: 'created_at', searchable: false},
+                    {data: 'post', name: 'post', searchable: false, sortable: false},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ]
             });
