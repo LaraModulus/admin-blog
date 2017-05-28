@@ -32,6 +32,7 @@ class CreateBlogSeriesTable extends Migration
         Schema::create('blog_post_series', function(Blueprint $table){
             $table->integer('serie_id');
             $table->integer('post_id');
+            $table->primary(['serie_id', 'post_id']);
         });
     }
 
@@ -42,7 +43,7 @@ class CreateBlogSeriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('blog_series');
-        Schema::drop('blog_post_series');
+        Schema::dropIfExists('blog_series');
+        Schema::dropIfExists('blog_post_series');
     }
 }

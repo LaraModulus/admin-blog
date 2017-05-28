@@ -31,7 +31,7 @@ class CreateBlogTagsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('blog_tags');
-        Schema::drop('blog_post_tag');
+        Schema::dropIfExists('blog_tags');
+        Schema::dropIfExists('blog_post_tag');
     }
 }
