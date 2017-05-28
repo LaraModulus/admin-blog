@@ -11,11 +11,12 @@ class CreatePostsPivotTable extends Migration
         Schema::create('blog_posts_categories', function (Blueprint $table) {
             $table->integer('posts_id')->unsigned()->index();
             $table->integer('categories_id')->unsigned()->index();
+            $table->primary(['posts_id', 'categories_id']);
         });
     }
 
     public function down()
     {
-        Schema::drop('blog_posts_categories');
+        Schema::dropIfExists('blog_posts_categories');
     }
 }
