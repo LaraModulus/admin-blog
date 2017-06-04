@@ -6,13 +6,14 @@ use LaraMod\Admin\Core\Scopes\AdminCoreOrderByCreatedAtScope;
 use LaraMod\Admin\Core\Scopes\AdminCoreOrderByPosScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use LaraMod\Admin\Core\Traits\HelpersTrait;
 
 class Series extends Model
 {
     public $timestamps = true;
     protected $table = 'blog_series';
 
-    use SoftDeletes;
+    use SoftDeletes, HelpersTrait;
     protected $guarded = ['id'];
 
     protected $casts = [
@@ -28,6 +29,7 @@ class Series extends Model
     protected $fillable = [
         'viewable',
         'pos',
+        'slug'
     ];
 
     public function __construct(array $attributes = [])

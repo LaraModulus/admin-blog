@@ -5,13 +5,14 @@ namespace LaraMod\Admin\Blog\Models;
 use LaraMod\Admin\Core\Scopes\AdminCoreOrderByCreatedAtScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use LaraMod\Admin\Core\Traits\HelpersTrait;
 
 class Categories extends Model
 {
     protected $table = 'blog_categories';
     public $timestamps = true;
 
-    use SoftDeletes;
+    use SoftDeletes, HelpersTrait;
 
     protected $guarded = ['id'];
 
@@ -24,6 +25,7 @@ class Categories extends Model
         'viewable',
         'categories_id',
         'pos',
+        'slug'
     ];
 
     public function __construct(array $attributes = [])

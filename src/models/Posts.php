@@ -3,6 +3,7 @@
 namespace LaraMod\Admin\Blog\Models;
 
 use LaraMod\Admin\Core\Scopes\AdminCoreOrderByCreatedAtScope;
+use LaraMod\Admin\Core\Traits\HelpersTrait;
 use LaraMod\Admin\Files\Models\Files;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,7 +13,7 @@ class Posts extends Model
     protected $table = 'blog_posts';
     public $timestamps = true;
 
-    use SoftDeletes;
+    use SoftDeletes, HelpersTrait;
 
     protected $guarded = ['id'];
     protected $dates = ['publish_date', 'deleted_at'];
@@ -28,6 +29,7 @@ class Posts extends Model
         'viewable',
         'allow_comments',
         'users_id',
+        'slug',
     ];
 
     public function __construct(array $attributes = [])

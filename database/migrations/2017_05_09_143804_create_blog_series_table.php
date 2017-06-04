@@ -27,6 +27,7 @@ class CreateBlogSeriesTable extends Migration
             }
             $table->boolean('viewable')->default(false)->index();
             $table->smallInteger('pos')->default(0)->index();
+            $table->string('slug');
         });
 
         Schema::create('blog_post_series', function(Blueprint $table){

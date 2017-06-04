@@ -4,12 +4,14 @@ namespace LaraMod\Admin\Blog\Models;
 
 use LaraMod\Admin\Core\Scopes\AdminCoreOrderByCreatedAtScope;
 use Illuminate\Database\Eloquent\Model;
+use LaraMod\Admin\Core\Traits\HelpersTrait;
 
 class Tags extends Model
 {
     protected $table = 'blog_tags';
     public $timestamps = true;
 
+    use HelpersTrait;
 
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];

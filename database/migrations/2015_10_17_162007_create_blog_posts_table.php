@@ -27,6 +27,7 @@ class CreateBlogPostsTable extends Migration
             $table->boolean('allow_comments')->index()->default(1);
             $table->integer('views')->unsigned()->default(0);
             $table->integer('users_id')->unsigned()->default(0);
+            $table->string('slug');
         });
     }
 
