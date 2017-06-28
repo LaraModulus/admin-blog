@@ -6,13 +6,14 @@ use App\User;
 use LaraMod\Admin\Core\Scopes\AdminCoreOrderByCreatedAtScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use LaraMod\Admin\Core\Traits\HelpersTrait;
 
 class Comments extends Model
 {
     protected $table = 'blog_comments';
     public $timestamps = true;
 
-    use SoftDeletes;
+    use SoftDeletes, HelpersTrait;
 
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];

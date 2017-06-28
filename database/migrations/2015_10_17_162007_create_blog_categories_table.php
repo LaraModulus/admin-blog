@@ -22,6 +22,7 @@ class CreateBlogCategoriesTable extends Migration
             $table->boolean('viewable')->default(true)->index();
             $table->integer('categories_id')->unsigned()->nullable()->index();
             $table->smallInteger('pos')->unsigned()->index()->default(0);
+            $table->string('slug');
         });
     }
 

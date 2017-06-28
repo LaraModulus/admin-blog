@@ -41,9 +41,12 @@ class CategoriesController extends Controller
 
         $category = Categories::firstOrCreate(['id' => $request->get('id')]);
         try {
-            $category->update(array_filter($request->only($category->getFillable()), function($key) use ($request, $category){
-               return in_array($key, array_keys($request->all())) || @$category->getCasts()[$key]=='boolean';
-            }, ARRAY_FILTER_USE_KEY));
+            if(!$request->has('slug')){
+                $request->merge(['slug' => $category->createSlug(
+                    $request->get('title_'.config('app.fallback_locale', 'en'))
+                )]);
+            }
+            $category->autoFill($request);
 
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors(['errors' => $e->getMessage()]);

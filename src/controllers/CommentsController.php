@@ -40,12 +40,7 @@ class CommentsController extends Controller
 
         $comment = Comments::firstOrCreate(['id' => $request->get('id')]);
         try {
-            /**
-             * TODO: Implement language selection and users id
-             */
-            $comment->update(array_filter($request->only($comment->getFillable()), function($key) use ($request, $comment){
-                return in_array($key, array_keys($request->all())) || @$comment->getCasts()[$key]=='boolean';
-            }, ARRAY_FILTER_USE_KEY));
+            $comment->autoFill($request);
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors(['errors' => $e->getMessage()]);
         }

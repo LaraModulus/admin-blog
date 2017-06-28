@@ -119,6 +119,14 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="slug">Slug</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">{{url('/blog/s/')}}/</div>
+                                    <input pattern="[A-z0-9\-]+" type="text" name="slug" id="slug" class="form-control" value="{{old('slug', $item->slug)}}" placeholder="Example: hello-world-123. Set automatically if empty.">
+                                    <div class="input-group-addon">-{{($item->id ? $item->id : $item->max('id') + 1)}}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

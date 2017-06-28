@@ -54,5 +54,15 @@ Route::group([
         Route::get('/datatable', ['as' => 'admin.blog.series.datatable', 'uses' => 'SeriesController@dataTable']);
     });
 
+    Route::group([
+            'prefix' => 'tags',
+        ], function(){
+            Route::get('/', ['as' => 'admin.blog.tags', 'uses' => 'TagsController@index']);
+            Route::get('/form', ['as' => 'admin.blog.tags.form', 'uses' => 'TagsController@getForm']);
+            Route::post('/form', ['as' => 'admin.blog.tags.form', 'uses' => 'TagsController@postForm']);
+
+            Route::get('/delete', ['as' => 'admin.blog.tags.delete', 'uses' => 'TagsController@delete']);
+            Route::get('/datatable', ['as' => 'admin.blog.tags.datatable', 'uses' => 'TagsController@dataTable']);
+        });
 
 });
