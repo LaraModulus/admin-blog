@@ -8,7 +8,7 @@ https://github.com/LaraModulus
 Installation
 ---------------
 ```
-composer require laramod\admin-blog
+composer require laramod/admin-blog
 ```
  **config/app.php**
  
