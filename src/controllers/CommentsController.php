@@ -38,7 +38,7 @@ class CommentsController extends Controller
     public function postForm(Request $request)
     {
 
-        $comment = Comments::firstOrCreate(['id' => $request->get('id')]);
+        $comment = Comments::firstOrNew(['id' => $request->get('id')]);
         try {
             $comment->autoFill($request);
         } catch (\Exception $e) {

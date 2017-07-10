@@ -34,7 +34,7 @@ class TagsController extends Controller
     public function postForm(Request $request)
     {
 
-        $item = Tags::firstOrCreate(['id' => $request->get('id')]);
+        $item = Tags::firstOrNew(['id' => $request->get('id')]);
         try {
             $item->autoFill($request);
         } catch (\Exception $e) {

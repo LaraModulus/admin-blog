@@ -39,7 +39,7 @@ class CategoriesController extends Controller
     public function postForm(Request $request)
     {
 
-        $category = Categories::firstOrCreate(['id' => $request->get('id')]);
+        $category = Categories::firstOrNew(['id' => $request->get('id')]);
         try {
             if(!$request->has('slug')){
                 $request->merge(['slug' => $category->createSlug(

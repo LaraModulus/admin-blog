@@ -48,7 +48,7 @@ class PostsController extends Controller
     public function postForm(Request $request)
     {
 
-        $post = Posts::firstOrCreate(['id' => $request->get('id')]);
+        $post = Posts::firstOrNew(['id' => $request->get('id')]);
         try {
             if(!$request->has('slug')){
                 $request->merge(['slug' => $post->createSlug(
