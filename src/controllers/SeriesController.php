@@ -42,7 +42,7 @@ class SeriesController extends Controller
     public function postForm(Request $request)
     {
 
-        $item = Series::firstOrCreate(['id' => $request->get('id')]);
+        $item = Series::firstOrNew(['id' => $request->get('id')]);
         try {
             if(!$request->has('slug')){
                 $request->merge(['slug' => $item->createSlug(
