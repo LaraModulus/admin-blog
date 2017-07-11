@@ -129,7 +129,7 @@ class PostsController extends Controller
 
     public function dataTable()
     {
-        $items = Posts::select(['id', 'title_en', 'views', 'publish_date', 'deleted_at', 'viewable']);
+        $items = Posts::select(['id', 'title_'.config('app.fallback_locale', 'en'), 'views', 'publish_date', 'deleted_at', 'viewable']);
 
         return DataTables::of($items)
             ->addColumn('action', function ($item) {

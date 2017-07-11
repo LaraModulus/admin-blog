@@ -48,7 +48,7 @@
                 ],
                 columns: [
                     {data: 'id', name: 'ID'},
-                    {data: 'title_en', name: 'title_en'},
+                    {data: 'title_{{config('app.fallback_locale', 'en')}}', name: 'title_{{config('app.fallback_locale', 'en')}}'},
                     {data: 'posts_count', name: 'posts_count', searchable: false, orderable: false},
                     {data: 'status', searchable: false, orderable: false},
                     {data: 'created_at', searchable: false},

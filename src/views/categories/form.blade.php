@@ -123,7 +123,7 @@
                                         <option value="0">This is parent category</option>
                                         @foreach(\LaraMod\Admin\Blog\Models\Categories::where('id', '!=', $category->id)->get() as $c)
                                             <option value="{{$c->id}}"
-                                                    @if($c->id==$category->categories_id) selected @endif>{{$c->title}}</option>
+                                                    @if($c->id==$category->categories_id) selected @endif>{{$c->{'title_'.config('app.fallback_locale', 'en')} }}</option>
                                         @endforeach
                                     </select>
                                 </div>
