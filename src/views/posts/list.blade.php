@@ -49,7 +49,7 @@
                 ],
                 columns: [
                     {data: 'id', name: 'ID'},
-                    {data: 'title_en', name: 'title_en'},
+                    {data: 'title_{{config('app.fallback_locale', 'en')}}', name: 'title_{{config('app.fallback_locale', 'en')}}'},
                     {data: 'status', searchable: false, orderable: false},
                     {data: 'views', searchable: false},
                     {data: 'publish_date', searchable: false},

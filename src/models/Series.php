@@ -59,37 +59,37 @@ class Series extends Model
 
     public function getTitleAttribute()
     {
-        return $this->{'title_' . config('app.fallback_locale', 'en')};
+        return $this->{'title_' . config('app.locale', 'en')};
     }
 
     public function getSubTitleAttribute()
     {
-        return $this->{'sub_title_' . config('app.fallback_locale', 'en')};
+        return $this->{'sub_title_' . config('app.locale', 'en')};
     }
 
     public function getShortDescriptionAttribute()
     {
-        return $this->{'short_description_' . config('app.fallback_locale', 'en')};
+        return $this->{'short_description_' . config('app.locale', 'en')};
     }
 
     public function getDescriptionAttribute()
     {
-        return $this->{'description_' . config('app.fallback_locale', 'en')};
+        return $this->{'description_' . config('app.locale', 'en')};
     }
 
     public function getMetaTitleAttribute()
     {
-        return $this->{'meta_title_' . config('app.fallback_locale', 'en')};
+        return $this->{'meta_title_' . config('app.locale', 'en')};
     }
 
     public function getMetaDescriptionAttribute()
     {
-        return $this->{'meta_description_' . config('app.fallback_locale', 'en')};
+        return $this->{'meta_description_' . config('app.locale', 'en')};
     }
 
     public function getMetaKeywordsAttribute()
     {
-        return $this->{'meta_keywords_' . config('app.fallback_locale', 'en')};
+        return $this->{'meta_keywords_' . config('app.locale', 'en')};
     }
 
     protected function bootIfNotBooted()

@@ -114,7 +114,7 @@
                                 {{--<input type="hidden" id="products_ids" name="products">--}}
                                 <select multiple class="form-control" name="series[]" id="series_ids">
                                     @foreach($post->series as $s)
-                                        <option value="{{$s->id}}">{{$s->title_en}}</option>
+                                        <option value="{{$s->id}}">{{$s->{'title_'.config('app.fallback_locale', 'en')} }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -275,7 +275,7 @@
             if (item.loading) return item.text;
 
             var markup = '<ul class="list-unstyled">' +
-                '<li>['+item.id+'] ' + item.title_en + '</li>';
+                '<li>['+item.id+'] ' + item.title_{{config('app.fallback_locale', 'en')}} + '</li>';
 
             markup += '</ul>';
 
@@ -283,7 +283,7 @@
         }
 
         function formatItemsSelection (item) {
-            return item.title_en;
+            return item.title_{{config('app.fallback_locale', 'en')}};
         }
 
         $(document).ready(function(){
@@ -291,10 +291,10 @@
             $("#series_ids").select2({
                 theme: 'bootstrap',
                 multiple: true,
-                data: {!! $post->series()->select(['id','title_en'])->get()->map(function($post){
+                data: {!! $post->series()->select(['id','title_'.config('app.fallback_locale', 'en')])->get()->map(function($post){
                         return [
                             "id" => $post->id,
-                            "title_en" => $post->title_en
+                            "title_".config('app.fallback_locale', 'en') => $post->{'title_'.config('app.fallback_locale', 'en')}
                         ];
                     }) !!},
                 ajax: {

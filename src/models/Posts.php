@@ -99,32 +99,32 @@ class Posts extends Model
 
     public function getTitleAttribute()
     {
-        return $this->{'title_' . config('app.fallback_locale', 'en')};
+        return $this->{'title_' . config('app.locale', 'en')};
     }
 
     public function getContentAttribute()
     {
-        return $this->{'content_' . config('app.fallback_locale', 'en')};
+        return $this->{'content_' . config('app.locale', 'en')};
     }
 
     public function getExcerptAttribute()
     {
-        return $this->{'excerpt_' . config('app.fallback_locale', 'en')};
+        return $this->{'excerpt_' . config('app.locale', 'en')};
     }
 
     public function getMetaTitleAttribute()
     {
-        return $this->{'meta_title_' . config('app.fallback_locale', 'en')};
+        return $this->{'meta_title_' . config('app.locale', 'en')};
     }
 
     public function getMetaDescriptionAttribute()
     {
-        return $this->{'meta_description_' . config('app.fallback_locale', 'en')};
+        return $this->{'meta_description_' . config('app.locale', 'en')};
     }
 
     public function getMetaKeywordsAttribute()
     {
-        return $this->{'meta_keywords_' . config('app.fallback_locale', 'en')};
+        return $this->{'meta_keywords_' . config('app.locale', 'en')};
     }
 
     public function setPublishDateAttribute($value = null)

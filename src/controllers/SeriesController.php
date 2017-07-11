@@ -86,7 +86,7 @@ class SeriesController extends Controller
 
     public function dataTable()
     {
-        $items = Series::select(['id','title_en','created_at', 'viewable']);
+        $items = Series::select(['id','title_'.config('app.fallback_locale', 'en'),'created_at', 'viewable']);
 
         return DataTables::of($items)
             ->addColumn('action', function ($item) {

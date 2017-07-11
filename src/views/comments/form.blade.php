@@ -91,7 +91,7 @@
                                 <select class="form-control select2" name="blog_posts_id" id="blog_posts_id">
                                     @foreach(\LaraMod\Admin\Blog\Models\Posts::select(['id', 'title_en'])->get() as $post)
                                         <option value="{{$post->id}}"
-                                                @if($comment->blog_posts_id==$post->id) selected @endif >{{$post->title_en}}</option>
+                                                @if($comment->blog_posts_id==$post->id) selected @endif >{{$post->{'title_'.config('app.fallback_locale', 'en')} }}</option>
                                     @endforeach
                                 </select>
                             </div>
