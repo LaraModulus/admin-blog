@@ -41,7 +41,7 @@ class CategoriesController extends Controller
 
         $category = Categories::firstOrNew(['id' => $request->get('id')]);
         try {
-            if(!$request->has('slug')){
+            if(!$request->get('slug')){
                 $request->merge(['slug' => $category->createSlug(
                     $request->get('title_'.config('app.fallback_locale', 'en'))
                 )]);
