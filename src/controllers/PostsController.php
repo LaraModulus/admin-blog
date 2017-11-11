@@ -50,7 +50,7 @@ class PostsController extends Controller
 
         $post = Posts::firstOrNew(['id' => $request->get('id')]);
         try {
-            if(!$request->has('slug')){
+            if(!$request->get('slug')){
                 $request->merge(['slug' => $post->createSlug(
                     $request->get('title_'.config('app.fallback_locale', 'en'))
                 )]);
